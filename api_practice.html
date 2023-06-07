@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        height: 200px;
+    }
+</style>
+<body>
+    <div class="container"></div>
+
+    <script>
+        fetch("https://api.unsplash.com/photos/?client_id=XeMLEo-cG4umamAaRPxahF5CC7nhdSYGtbKlmU1O7Sk")
+        .then((res) => {
+            const data = res.json();
+            return data;
+        })
+        .then((data) => {
+            console.log(data);
+            for(let i = 0;i <= data.length; i++){
+                let container = document.querySelector('.container');
+                let img = document.createElement('img');
+                img.setAttribute("src",data[i].urls.small);
+                container.append(img);
+            }
+
+        });
+    </script>
+</body>
+</html>

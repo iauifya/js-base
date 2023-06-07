@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pra3.css">
+</head>
+
+<body>
+    <h3>setInterval+中心偏移表示法</h3>
+    <p>補充屬性 transform-origin，而不使用 kerfram 反而透過 setInterval 來執行</p>
+    <div class="circle">
+        <div class="jmin1 omin4"></div>
+        <div class="jhour1 ohour4"></div>
+        <div class="jsec1 osec4"></div>
+    </div>
+
+    <script>
+        let time = new Date();
+        let pos_s = time.getSeconds();
+        let pos_m = time.getMinutes();
+        let pos_h = time.getHours();
+        let x = pos_s * 6;
+        let y = pos_m * 6 + pos_s * 0.1; /*對 Y 來說還有一個角度是 60 秒滿足 6 度*/
+        let z = pos_h * 30 + pos_m * 0.5; /*對 Z 來說還有一個角度是 60 分鐘滿足 30 度*/
+        /*初始先 ON 一遍 DOM*/
+        document.getElementsByClassName('osec4')[0].style.transform = `rotate(${x}deg)`;
+        document.getElementsByClassName('omin4')[0].style.transform = `rotate(${y}deg)`;
+        document.getElementsByClassName('ohour4')[0].style.transform = `rotate(${z}deg)`;
+
+        /*跑 reply*/
+        function overtime() {
+            let time = new Date();
+            let pos_s = time.getSeconds();
+            let pos_m = time.getMinutes();
+            let pos_h = time.getHours();
+            let x = pos_s * 6;
+            let y = pos_m * 6 + pos_s * 0.1; /*對 Y 來說還有一個角度是 60 秒滿足 6 度*/
+            let z = pos_h * 30 + pos_m * 0.5; /*對 Z 來說還有一個角度是 60 分鐘滿足 30 度*/
+            document.getElementsByClassName('osec4')[0].style.transform = `rotate(${x}deg)`;
+            document.getElementsByClassName('omin4')[0].style.transform = `rotate(${y}deg)`;
+            document.getElementsByClassName('ohour4')[0].style.transform = `rotate(${z}deg)`;
+        }
+
+        var loop = setInterval(overtime, 1000);
+
+        function ctl(who) {
+            if (who.textContent == "STOP") {
+                clearInterval(loop);
+                who.textContent = "PLAY";
+            } else {
+                loop = setInterval(overtime, 1000);
+                who.textContent = "STOP";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/pra2.css">
+</head>
+
+<body>
+    <div class="main">
+        <div id="clock2">
+            <p id="clk2-time">12:00:00</p>
+            <p id="clk2-date">2021-11-30 TUE</p>
+        </div>
+    </div>
+    <script>
+        // var n_day = ['SUN', 'MON', 'TUS', 'WED', 'THR', 'FRI', 'SAT'];
+
+        // function re_time() {
+        //     setTimeout("re_time()", 1000);
+        //     nt = new Date();
+        //     n_hour = nt.getHours(); //時
+        //     n_min = nt.getMinutes(); //分
+        //     n_sec = nt.getSeconds(); //秒 65
+
+        //     n_year = nt.getFullYear(); //年
+        //     n_moth = nt.getMonth();
+        //     n_date = nt.getDate();
+        //     d_item = nt.getDay();
+
+        //     function chk0(num) {
+        //         return (num < 10) ? "0" + num : num;
+        //     }
+
+        //     document.getElementById("clk2-time").textContent = `${chk0(n_hour)}:${chk0(n_min)}:${chk0(n_sec)}`;
+        //     document.getElementById("clk2-date").textContent = `${n_year}-${n_moth + 1}-${n_date} ${n_day[d_item]}`;
+
+        // }
+        // re_time();
+        function re_time() {
+            let d_day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
+            let nt = new Date();
+            t_hours = nt.getHours();
+            t_minutes = nt.getMinutes();
+            t_seconds = nt.getSeconds();
+
+            d_years = nt.getFullYear();
+            d_months = nt.getMonth();
+            d_date = nt.getDate();
+            d_items = nt.getDay();
+
+            function chk0(num) {
+                return (num < 10) ? '0' + num : num;
+            }
+
+            document.querySelector('#clk2-time').textContent = `${chk0(t_hours)}:${chk0(t_minutes)}:${chk0(t_seconds)}`;
+            document.querySelector('#clk2-date').textContent = `${d_years}-${(d_months)+1}-${chk0(d_date)} ${d_day[d_items]}`;
+            setInterval('re_time()', 1000);
+        }
+        re_time();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 map用法</title>
+</head>
+
+<body>
+    <script>
+        //es6 map用法
+        // 建立一個 Map 物件
+        let myMap = new Map();
+
+        let keyString = 'a string';
+        let keyObj = {};
+        let keyFunc = function() {};
+
+        // set() 用來新增 key-value pair
+
+        // key 不限字串，可以是任何的資料型態
+        myMap.set(keyString, "value associated with 'a string'");
+        myMap.set(keyObj, 'value associated with keyObj');
+        myMap.set(keyFunc, 'value associated with keyFunc');
+
+        // get() 用來取得某個 key 的值
+
+        // 顯示 "value associated with 'a string'"
+        console.log(myMap.get(keyString));
+        // 顯示 "value associated with keyObj"
+        console.log(myMap.get(keyObj));
+        // 顯示 "value associated with keyFunc"
+        console.log(myMap.get(keyFunc));
+
+        // 因為 keyString === 'a string'
+        // 顯示 "value associated with 'a string'"
+        console.log(myMap.get('a string'));
+
+        // 因為 because keyObj !== {}
+        // 顯示 undefined
+        console.log(myMap.get({}));
+
+        // 因為 keyFunc !== function () {}
+        // 顯示 undefined
+        console.log(myMap.get(function() {}));
+
+
+        //陣列中取值
+        let kvArray = [
+            ['key1', 'value1'],
+            ['key2', 'value2']
+        ]
+
+        let oneMap = new Map(kvArray);
+
+        // 顯示 value1
+        console.log(oneMap.get('key1'));
+
+        // 顯示 Map {"key1" => "value1", "key2" => "value2"}
+        console.log(oneMap);
+
+
+        //Map.prototype.set(key, value)
+        var m = new Map();
+
+        m.set('str', 123);
+        m.set(101, [1, 2, 3]);
+        m.set(undefined, 'blah');
+        console.log(m);
+
+        //因為 set() 方法會返回 Map 本身， 所以你可以用 chaining 的寫法：
+        var n = new Map();
+
+        n.set('str', 123)
+            .set(101, [1, 2, 3])
+            .set(undefined, 'blah');
+        console.log(n);
+        console.log(n.get('str')); //123
+
+        //Map.prototype.get(key)
+        //取得某個 key 的值， 如果沒有這個 key 則返回 undefined。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2]
+        ]);
+
+        // 1
+        m.get('a');
+
+        // undefined
+        m.get('c');
+
+
+        //Map.prototype.delete(key)
+        //刪除某個 key， 如果刪除成功會返回 true， 反之返回 false。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2]
+        ]);
+
+        // true
+        m.delete('a');
+
+        // false
+        m.delete('c');
+
+        // Map {"b" => 2}
+        m;
+
+
+        //Map.prototype.keys()
+        //返回一個 Iterator 物件表示全部的 keys。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2],
+            ['c', 3]
+        ]);
+
+        for (let k of m.keys()) {
+            console.log(k);
+        }
+
+        // 依序輸出 a b c
+        //Map.prototype.values()
+        //返回一個 Iterator 物件表示全部的 values。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2],
+            ['c', 3]
+        ]);
+
+        for (let v of m.values()) {
+            console.log(v);
+        }
+
+        // 依序輸出 1 2 3
+
+
+        //Map.prototype.entries()
+        //返回一個 Iterator 物件， 其中每一個值是[key, value] 結構的陣列。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2],
+            ['c', 3]
+        ]);
+
+        for (let [k, v] of m.entries()) {
+            console.log(`${k}=>${v}`);
+        }
+
+        // 依序輸出 a=>1 b=>2 c=>3
+
+
+        //Map.prototype.forEach(callbackFn[, thisArg])
+        //forEach() 方法可以用來遍歷 Map。
+
+        //其中第一個參數 callbackFn 是一個函數， 有三個參數：
+        //value,key,Map 物件本身
+        //第二個參數 thisArg 不是必要的參數， 表示 this 指向的物件。
+
+        var m = new Map([
+            ['a', 4],
+            ['b', 5],
+            ['c', 6]
+        ]);
+
+        // m.forEach(function(value, key, map) {
+        //     console.log(`${key}=>${value}`);
+        // });
+        m.forEach((value, key, map) => {
+            console.log(`${key}=>${value}`);
+        }); //arrow function
+
+        // 依序輸出 a=>1 b=>2 c=>3
+
+
+        //for...of
+        //也可以用for...of 來遍歷 Map。
+
+        var m = new Map([
+            ['a', 1],
+            ['b', 2],
+            ['c', 3]
+        ]);
+
+        for (let [k, v] of m) {
+            console.log(`${k}=>${v}`);
+        }
+
+        // 依序輸出 a=>1 b=>2 c=>3
+    </script>
+</body>
+
+</html>

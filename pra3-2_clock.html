@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pra3.css">
+    <script>
+        let time = new Date();
+        let pos_s = time.getSeconds();
+        let pos_m = time.getMinutes();
+        let pos_h = time.getHours();
+        let x = pos_s * 6;
+        let y = pos_m * 6 + pos_s * 0.1; /*對 Y 來說還有一個角度是 60 秒滿足 6 度*/
+        let z = pos_h * 30 + pos_m * 0.5; /*對 Z 來說還有一個角度是 60 分鐘滿足 30 度*/
+        document.write(`
+            <style>
+                @keyframes j_s{
+                    from{transform: rotate(${x}deg);}
+                    to{transform: rotate(${360 + x}deg);}
+                }
+                @keyframes j_m{
+                    from{transform: rotate(${y}deg);}
+                    to{transform: rotate(${360 + y}deg);}
+                }
+                @keyframes j_h{
+                    from{transform: rotate(${z}deg);}
+                    to{transform: rotate(${360 + z}deg);}
+                }
+            </style>
+        `)
+    </script>
+</head>
+
+<body>
+    <h3>CSSAnimation+中心偏移表示法</h3>
+    <p>補充屬性 transform-origin 真正讓旋轉的中心點偏移</p>
+    <div class="circle">
+        <div class="jmin1 omin3"></div>
+        <div class="jhour1 ohour3"></div>
+        <div class="jsec1 osec3"></div>
+
+    </div>
+</body>
+
+</html>

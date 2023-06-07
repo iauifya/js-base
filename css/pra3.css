@@ -1,0 +1,192 @@
+* {
+    position: relative;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ccc;
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: wrap; */
+    height: 100vh;
+    /* align-content: center; */
+}
+
+.circle {
+    /*圓盤底*/
+    width: 300px;
+    height: 300px;
+    background: white;
+    border-radius: 300px;
+    box-shadow: 0px 3px 16px rgba(0, 0, 0, .25);
+    /* margin: 20px; */
+    padding: 20px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+h3,
+p {
+    text-align: center;
+    z-index: 999;
+}
+
+h3 {
+    margin-top: 3rem;
+}
+
+
+/* .kmin1,
+.khours,
+.ksec1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #666;
+}
+
+.khours {
+    animation: j_h 43200s infinite linear;
+}
+
+.kmin1 {
+    animation: j_m 3600s infinite linear;
+}
+
+.ksec1 {
+    animation: j_s 60s infinite linear
+}
+
+.kmin1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 0px;
+    transform: translate(0, 0);
+    height: 90px;
+    background-color: #62a388;
+    border-radius: 8px;
+}
+
+.khour1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    width: 8px;
+    height: 60px;
+    background-color: #055e68;
+    border-radius: 8px;
+}
+
+.ksec1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    width: 8px;
+    height: 120px;
+    background-color: #b9d2d2;
+    border-radius: 8px;
+} */
+
+.jhour1 {
+    /*時針*/
+    width: 10px;
+    height: 30%;
+    background: #055e68;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    margin-left: -5px;
+    border-radius: 8px;
+}
+
+.jmin1 {
+    /*分針*/
+    width: 10px;
+    height: 40%;
+    background: rgb(91, 134, 91);
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    margin-left: -5px;
+    border-radius: 8px;
+}
+
+.jsec1 {
+    /*秒針*/
+    width: 4px;
+    height: 50%;
+    background: #b9d2d2;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    margin-left: -2px;
+    border-radius: 8px;
+}
+
+.ohour3 {
+    animation: j_h 43200s infinite linear;
+    transform-origin: 50% 82px;
+}
+
+.omin3 {
+    animation: j_m 3600s infinite linear;
+    transform-origin: 50% 116px;
+}
+
+.osec3 {
+    animation: j_s 60s infinite linear;
+    transform-origin: 50% 150px;
+}
+
+.ohour4 {
+    transform-origin: 50% 82px;
+}
+
+.omin4 {
+    transform-origin: 50% 116px;
+}
+
+.osec4 {
+    transform-origin: 50% 150px;
+}
+
+.zsec1 {
+    width: 300px;
+    height: 300px;
+    /* background-color: #eee; */
+    position: absolute;
+    animation: j_s 60s linear infinite
+}
+
+.zmin1 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    animation: j_m 3600s infinite linear;
+}
+
+.zhour1 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    animation: j_h 43200s infinite linear;
+}

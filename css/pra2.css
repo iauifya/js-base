@@ -1,0 +1,98 @@
+* {
+    position: relative;
+    font-family: "Orbitron", sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.5px;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+}
+
+#clock2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    text-align: center;
+    /* animation: light 10s linear infinite; */
+}
+
+#clk2-time {
+    font-size: 5rem;
+    font-weight: 600;
+}
+
+#clk2-date {
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+@keyframes light {
+    from {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(0, 100%, 60%, 1), 0 0 40px hsla(0, 100%, 30%, 1);
+        color: hsla(0, 100%, 95%, 1);
+    }
+    10% {
+        /*thin*/
+        text-shadow: 0 0 10px hsla(36, 100%, 60%, 1), 0 0 40px hsla(36, 100%, 30%, 1);
+        color: hsla(36, 100%, 95%, 1);
+    }
+    20% {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(72, 100%, 60%, 1), 0 0 40px hsla(72, 100%, 30%, 1);
+        color: hsla(72, 100%, 95%, 1);
+    }
+    30% {
+        /*thin*/
+        text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 40px hsla(108, 100%, 30%, 1);
+        color: hsla(108, 100%, 95%, 1);
+    }
+    40% {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(144, 100%, 60%, 1), 0 0 40px hsla(144, 100%, 30%, 1);
+        color: hsla(144, 100%, 95%, 1);
+    }
+    50% {
+        /*thin*/
+        text-shadow: 0 0 10px hsla(180, 100%, 60%, 1), 0 0 40px hsla(180, 100%, 30%, 1);
+        color: hsla(180, 100%, 95%, 1);
+    }
+    60% {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(216, 100%, 60%, 1), 0 0 40px hsla(216, 100%, 30%, 1);
+        color: hsla(216, 100%, 95%, 1);
+    }
+    70% {
+        /*thin*/
+        text-shadow: 0 0 10px hsla(252, 100%, 60%, 1), 0 0 40px hsla(252, 100%, 30%, 1);
+        color: hsla(252, 100%, 95%, 1);
+    }
+    80% {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(288, 100%, 60%, 1), 0 0 40px hsla(288, 100%, 30%, 1);
+        color: hsla(288, 100%, 95%, 1);
+    }
+    90% {
+        /*thin*/
+        text-shadow: 0 0 10px hsla(324, 100%, 60%, 1), 0 0 40px hsla(324, 100%, 30%, 1);
+        color: hsla(324, 100%, 95%, 1);
+    }
+    to {
+        /*fat*/
+        text-shadow: 0 0 200px hsla(360, 100%, 60%, 1), 0 0 40px hsla(360, 100%, 30%, 1);
+        color: hsla(360, 100%, 95%, 1);
+    }
+}

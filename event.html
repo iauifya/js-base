@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="button" value="onclick demo" onclick="showalert('我是 onclick demo')">
+    <hr>
+    <input type="button" value="onclick" onclick="whatIs(this)">
+    <input type="button" value="onmousedown" onmousedown="whatIs(this)">
+    <input type="button" value="onmouseup" onmouseup="whatIs(this)">
+    <input type="button" value="onmouseover" onmouseover="whatIs(this)">
+    <input type="button" value="onmouseout" onmouseout="whatIs(this)">
+    <input value="onchange" onchange="whatIs(this)">
+    <input value="onblur" onblur="whatIs(this)">
+    <input value="onfocus" onfocus="whatIs(this)">
+
+    <div id="fakeBtn"></div>
+    <hr>
+    <div>你的鍵盤號碼為：<span id="keycode"></span></div>
+
+
+    <input type="button" id="ock" value="try me">
+    <input type="button" id="canel" value="取消 mouseover" onclick="clearover()">
+
+
+    <script>
+        let ock = document.querySelector('#ock');
+        // ock.addEventListener('click', function() {
+        //     alert("It's click");
+        // })
+        ock.addEventListener('mouseover', myfun1);
+        ock.addEventListener('mouseover', myfun2);
+
+        function myfun1() {
+            alert("it's mouseover");
+        }
+
+        function myfun2() {
+            alert("you can do more function");
+        }
+
+        function clearover() {
+            ock.removeEventListener('mouseover', myfun2);
+        }
+        // let canel = document.querySelector('#canel');
+        // canel.removeEventListener('mouseover', myfun1);
+
+
+        /*一開始 HTML#ock 沒有寫事件，之後透過 addEventListener（甚麼動作，執行甚麼函式）來添加*/
+        // var mybtn = document.getElementById("ock");
+        // mybtn.addEventListener("click", function() { //這裡應該用 click 不該用 onclick
+        //     alert("it's click");
+        // });
+        // mybtn.addEventListener("mouseover", myfun);
+        // mybtn.addEventListener("mouseover", myfun2);
+
+        // function myfun() {
+        //     alert("it's mouseover");
+        // }
+
+        // function myfun2() {
+        //     alert("you can do more function");
+        // }
+
+        // function clearover() {
+        //     document.getElementById("ock").removeEventListener("mouseover", myfun);
+        // }
+
+
+
+        // function showalert(msg) {
+        //     alert(msg);
+        // }
+
+        // function whatIs(e) {
+        //     console.log(e.value); // 得到 e 物件，取得屬性名為 value 之內容
+
+        //     if (e.style.color == "red") e.style.color = null; //如果是紅色，取消這個色
+        //     else e.style = "color:red;font-size:30px;";
+        //     console.log(`你剛剛按下了${value}按鈕`);
+        // }
+        //1.點showalert會有alert視窗跳出來說明
+        function showalert(msg) {
+            alert(msg);
+        }
+
+        //2.點擊每個按鈕會出現相對應事件產生(按鈕變大，字變成藍色)
+        function whatIs(e) {
+            console.log(e.value);
+            if (e.style.color == 'blue') e.style.color = null; //一個=代表指定，兩個=代表等於是
+            else e.style = 'color:blue; font-size:24px';
+            console.log(`你剛剛按了${e.value}的按鈕`);
+        }
+        /*
+        // document.getElementById("fakeBtn").style = "background-color: aqua;box-shadow: 3px 3px 1px rgba(193, 193, 193, 0.5);cursor: pointer;display:inline;padding:5px";
+        // document.getElementById("fakeBtn").innerHTML = "模擬按鈕";
+        // document.getElementById("fakeBtn").onclick = function () { alert("onclick"); };
+        // 可以轉成變數來當物件，指向到任何屬性
+        // */
+        // var fakebtn = document.getElementById("fakeBtn");
+        // fakebtn.style = "background-color: aqua;box-shadow: 3px 3px 1px rgba(193, 193, 193, 0.5);cursor: pointer;display:inline;padding:5px";
+        // fakebtn.innerHTML = "假按鈕";
+        // fakebtn.onclick = function() {
+        //     alert(fakebtn.style.backgroundColor); //大部分都這樣-變化大寫
+        // };
+
+        //3.替fakebtn按鈕加上樣式、文字內容，點擊時會出現背景顏色是甚麼的文字
+        let fakebtn = document.querySelector('#fakeBtn');
+        fakebtn.style = 'color: #333; background-color: skyblue; font-size: 24px; display: inline-block; padding: 0 8px; cursor: pointer';
+        fakebtn.innerText = '假按鈕';
+        fakebtn.onclick = function() {
+            alert(fakebtn.style.backgroundColor);
+        }
+
+        // /*event 事件 on 鍵盤*/
+        // function getcode() {
+        //     console.log(event.keyCode);
+        //     document.getElementById("keycode").textContent = event.keyCode;
+        // }
+        // document.onkeydown = getcode;
+
+        //4.console取得鍵盤的對應碼，並把對應碼的數字內容塞進#keycode，使用鍵盤時就呼叫這個事件
+        function getcode() {
+            console.log(event.keyCode);
+            document.querySelector('#keycode').textContent = event.keyCode;
+        }
+        document.onkeydown = getcode;
+    </script>
+</body>
+
+</html>

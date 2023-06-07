@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        var say = function() {
+            console.log('hi');
+            return "yee";
+        }();
+        // 等號右側執行後會回傳 yee，所以右側等於結果出現了文字，能指定給左側變數
+        typeof(say); //say 為文字串 yee 的已存在變數
+
+        // function room() {
+        //     // console.log('hi');
+        //     console.log(this.obj); //印出這個世界下，this 物件內的變數 word 內容為何
+        // }
+        // var word = 'A';
+        // var obj = {
+        //     word: 'B',
+        //     first: room,
+        //     second: {
+        //         word: 'C',
+        //         goto: room
+        //     }
+        // }
+
+        obj = {
+                a: 123,
+                b: 456
+            } //字串可+''可不+
+        console.log(obj.a, obj['b']);
+
+        a = '5';
+        b = 100;
+        console.log(a + 3 + b);
+        console.log(a + (3 + b));
+        console.log(Number(a) + 3 + String(b));
+
+        Math.round(6.4); //四捨五入
+        Math.ceil(6.4); //無條件進
+        Math.floor(6.4); //無條件捨
+        Math.random(); //隨機 0<x<1 之浮點數
+        Math.floor(Math.random() * 15); //利用變 15 倍，得到 0<x<15 之間浮點數，在無條件捨去得到 0~14 隨機整數
+
+        /*如果想要範圍 50~80
+          =>Math.floor(Math.random()*31); 0~30
+          =>Math.floor(Math.random()*31)+50; //50~80
+          =>寫成 FUNCTION
+        */
+        function myrand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min; //做出在min~max內的隨機數
+        }
+
+        // 時間表示法
+        var now = Date();
+        var time = new Date();
+        console.log(now, time);
+        //兩者不同，前者為物件指向為變數使用 new，後者只是當作文字，要做 Date 的變化只能前者
+
+        //Date() 預設不填寫為目前時間，你可以指定任何時間，此為參數表示法為例，月份 0~11 數字代表
+        var custime1 = new Date(2021, 11, 29, 23, 59, 59, 999);
+        var custime2 = new Date("2021-11-29T23:59:59");; //ISO 表示法
+
+        /*如何抽出日期數字*/
+        time.getFullYear();
+        time.getMonth() + 1;
+        time.getDate();
+        time.getHours();
+        time.getMinutes();
+        time.getSeconds();
+
+        /*如何計算倒數日期*/
+        var time = new Date();
+        var custime2 = new Date("2021-11-29T23:59:59");; //ISO 表示法
+        tmin = time.getTime(); //兩者先取得時間戳記（毫秒）
+        tmax = custime2.getTime();
+        beto = Math.floor((tmax - tmin) / 1000);
+        //區間總數 （秒），不要小數點是因為秒數我們只要整數，小數點單位（毫秒）就不要了
+        //假設此時 beto=54321 秒，以下進行示範說明
+
+        bsec = beto % 60;
+        /*
+         * 54321%60=21
+         * 也就是說 21 秒是無法升級為分的殘餘
+         */
+
+        // bmin=(beto/60)%60;
+        /*
+         * 54321/60=905.35    
+         * 其中 0.35 如果* 60 會等於 21
+         * 也就是說小數點可以代表上一個秒的值，由於這裡我們不要秒所以你可以 floor 處理
+         * 結論我們要的 bmin 會是
+         * 1=>(Math.floor(beto/60))%60 
+         * 或 
+         * 2=>Math.floor(beto/60)%60)
+         * 不論 1 還是 2 答案都一樣，因為小數點都是上一階段沒消除的業障。
+         */
+
+        bmin = Math.floor((beto / 60) % 60);
+        //同理
+
+        bhur = Math.floor((beto / 60 / 60) % 24);
+        //同理
+
+        bday = Math.floor(beto / 60 / 60 / 24);
+        //這裡不用餘數，是因為不再昇華到下一階段，最大單位就是天數
+
+        console.log(`今年只剩${bday}天${bhur}時${bmin}分${bsec}秒就跨年囉！`);
+
+
+        //99乘法表
+        // for (i = 1, j = 1; j < 10; i++) {
+        //     document.write(`${i}*${j}=${i*j}<br>`)
+        //     if (i == 9) {
+        //         i = 0, j++;
+        //         document.write(`<hr>`)
+        //     }
+        // }
+
+        for (let i = 1; i < 10; i++) {
+            for (let j = 1; j < 10; j++) {
+                document.write(`${i} * ${j} = ${i*j}<br>`);
+            }
+        }
+    </script>
+</body>
+
+</html>

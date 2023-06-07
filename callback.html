@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function doHomework(subject, callback) {
+            alert(`開始我的 ${subject} 作業`);
+            callback();
+        }
+
+        function endHomework() {
+            alert('完成作業!');
+        }
+        doHomework('國文', endHomework);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+<style>
+    .m-0 {
+        margin: 0 !important;
+    }
+    
+    .mb-0 {
+        margin-bottom: 0 !important;
+    }
+    
+    .p-0 {
+        padding: 0 !important;
+    }
+    
+    .d-inline {
+        display: inline !important;
+    }
+    
+    .strToUp {
+        text-transform: uppercase;
+    }
+    
+    .d-none {
+        display: none;
+    }
+    
+    .pt-0 {
+        padding-top: 0;
+    }
+    
+    .pb-0 {
+        padding-bottom: 0;
+    }
+    
+    #workerdetail tbody tr td {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+</style>
+<link rel="stylesheet" href="{{ asset('wm/style.css') }}">
+<link rel="stylesheet" href="{{ asset('wm/wm.css') }}">
+
+<section class="content">
+    <div class="row">
+        <div class="box grid-box">
+            <div class="box-header with-border">
+                <div class="row">
+                    <div class="mask" onclick="trClose()">
+                        <div class="modal">
+                            <div class="card card_system">
+                                <div class="topTitle">
+                                    <h4>{{ $t }}</h4>
+                                </div>
+                                <div class="bottomItems">
+                                    <div class="noticeItems">
+                                        <div class="un_works">
+                                            <h5>未派工</h5>
+                                            <button class="btn @if ($p_data['count0301'][$k] > 0) danger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','unfinish0301')">
+                                                {{ $p_data['count0301'][$k] }}</button>
+                                            <p class="time">{{ $p_data['time0301'] }}</p>
+                                        </div>
+                                        <div class="inner_connect">
+                                            <h5>我會遲到</h5>
+                                            <button class="btn @if ($p_data['countdelay'][$k] > 0) sedDanger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','delay')">
+                                                {{ $p_data['countdelay'][$k] }}</button>
+                                            <p class="time">{{ $p_data['timedelay'] }}</p>
+                                        </div>
+                                        <div class="inner_connect">
+                                            <h5>內聯事項</h5>
+                                            <button class="btn @if ($p_data['count0310'][$k] > 0) sedDanger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','unfinish0310')">
+                                                {{ $p_data['count0310'][$k] }}</button>
+                                            <p class="time">{{ $p_data['time0310'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardItems">
+                        @foreach ($p_data['companynostr'] as $k => $t)
+                        <div class="card card_system" onclick="openModal()">
+                            <div class="topTitle">
+                                <h4>{{ $t }}</h4>
+                            </div>
+                            <div class="bottomItems">
+                                <div class="noticeItems">
+                                    <div class="un_works">
+                                        <h5>未派工</h5>
+                                        <button class="btn @if ($p_data['count0301'][$k] > 0) danger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','unfinish0301')">
+                                                {{ $p_data['count0301'][$k] }}</button>
+                                        <p class="time">{{ $p_data['time0301'] }}</p>
+                                    </div>
+                                    <div class="inner_connect">
+                                        <h5>我會遲到</h5>
+                                        <button class="btn @if ($p_data['countdelay'][$k] > 0) sedDanger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','delay')">
+                                                {{ $p_data['countdelay'][$k] }}</button>
+                                        <p class="time">{{ $p_data['timedelay'] }}</p>
+                                    </div>
+                                    <div class="inner_connect">
+                                        <h5>內聯事項</h5>
+                                        <button class="btn @if ($p_data['count0310'][$k] > 0) sedDanger @endif btn-lg" data-toggle="modal" data-target="#list_modal" onclick="getList('{{ $k }}','{{ $t }}','unfinish0310')">
+                                                {{ $p_data['count0310'][$k] }}</button>
+                                        <p class="time">{{ $p_data['time0310'] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach {{--
+                        <div class="card card_system">
+                            <div class="topTitle">
+                                <h4>數位天空</h4>
+                            </div>
+                            <div class="bottomItems">
+                                <div class="noticeItems">
+                                    <div class="un_works">
+                                        <h5>未派工</h5>
+                                        <button class="btn danger btn-lg">2</button>
+                                        <p class="time">1 hr ago</p>
+                                    </div>
+                                    <div class="inner_connect">
+                                        <h5>內聯事項</h5>
+                                        <button class="btn sedDanger btn-lg">3</button>
+                                        <p class="time">2 hr ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 清單 -->
+    <div class="modal fade" id="list_modal" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">修改帳號</h4>
+                </div>
+                <div class="modal-body">
+                    查詢中...
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-default" data-dismiss="modal">取消</button> --}} {{-- <button type="button" class="btn btn-primary" onclick="editUser()">存檔</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+<script>
+    $(document).ready(function() {
+        //
+    });
+
+    function openModal() {
+        $('.mask').addClass('.open');
+    }
+    //關閉條款
+    function trClose() {
+        $('.mask').removeClass('open');
+    }
+
+    // 查詢清單
+    function getList(companyno, soname, type) {
+
+        var params = [];
+        params['companyno'] = companyno;
+        params['type'] = type;
+        var jsonStr = JSON.stringify(Object.assign({}, params));
+        var sostr = companyno + '|' + soname;
+
+        $('#list_modal').find('h4').text(companyno + '|' + soname);
+        $('#list_modal .modal-body').text('查詢中...');
+        $('#list_modal .modal-footer').text('查詢中...');
+
+        $.ajax({
+            method: 'post',
+            url: '/api/wmAPI/v1/getUnFinishList',
+            data: jsonStr,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(json) {
+                console.log(json)
+                if (json.code !== '0000') {
+                    $('#list_modal .modal-body').text('查詢失敗;' + json.data);
+                    $('#list_modal .modal-footer').text(json.date);
+                } else {
+                    switch (type) {
+                        case 'unfinish0301':
+                            editHtml_unFinish0301(companyno + '|' + soname, json);
+                            break;
+                        case 'unfinish0310':
+                            editHtml_unFinish0310(companyno + '|' + soname, json);
+                            break;
+                        case 'delay':
+                            editHtml_delay(companyno + '|' + soname, json);
+                            break;
+                    }
+                }
+
+            },
+            error: function(json) {
+                console.log('Error');
+                console.log(json);
+            },
+        });
+
+    }
+
+
+    // edit，HTML，工單未指派
+    function editHtml_unFinish0301(companynoStr, json) {
+        $('#list_modal').find('h4').text(companynoStr + ' 未指派工單');
+        $('#list_modal .modal-body').text('查詢中...');
+        var list = (json.data).list;
+        var worker1List = (json.data).worker1;
+        var htmlStr = '';
+        var htmlSelect = '';
+        var htmlDetail = '';
+        var htmlD2 = '';
+
+        if (list.length < 1) {
+            htmlStr = '無資料';
+        } else {
+            // worker1List
+            htmlSelect = createSelectHtml(worker1List);
+
+            // orderList
+            htmlStr = '' +
+                '<table class="table table-sm table-hover table-striped table-bordered">\n' +
+                '    <thead>\n' +
+                '        <tr>\n' +
+                '            <th scope="col">類別</th>\n' +
+                '            <th scope="col">工單號<br />住編<br />預約日期</th>\n' +
+                '            <th scope="col">訂編 | 服務別 | ChargeName</th>\n' +
+                '            <th scope="col" style="width: 20%;">安裝地址<br />備註</th>\n' +
+                '            <th scope="col" style="width: 17%;">工程1<br />工程組別<br />指派</th>\n' +
+                '        </tr>\n' +
+                '    </thead>\n' +
+                '    <tbody>\n';
+
+            // 合併工單內容
+            htmlDetail = '';
+            Object.entries(list).forEach(entry => {
+                const [k, t] = entry;
+
+                htmlDetail += '\n' +
+                    '<tr>\n' +
+                    '<td>' + t.workkind + '</td>\n' +
+                    '<td data-companyno="' + t.companyno + '" data-worksheet="' + k + '" data-custid="' + t
+                    .custid + '">' +
+                    k + '<br />' +
+                    '<span style="color:red">住編</span>' + t.custid + '<br />' +
+                    t.bookdate +
+                    '</td>\n';
+
+                htmlD2 = crateOrderDetailHtml(t, t.worksheet);
+                htmlDetail += '\n' +
+                    '    <td class="p-0">' + htmlD2 + '</td>';
+
+                htmlDetail += '\n' +
+                    '    <td>' + t.instaddrname + '<br /><span style="color:red">備註:</span>' + t.mscomment1 +
+                    '</td>\n' +
+                    '    <td>\n' +
+                    htmlSelect + '<br />' +
+                    '<input type="text" class="text-center" style="margin-top: 6px" name="workteam" placeholder="工程組別" readonly><br />' +
+                    '        <button class="btn btn-info" style="display: inline-block" onclick="assignWork($(this))">指派</button>' +
+                    '    </td>\n' +
+                    '</tr>\n';
+            });
+
+            htmlStr += htmlDetail;
+
+            htmlStr += '\n' +
+                '    </tbody>\n' +
+                '</table>';
+
+        }
+        $('#list_modal .modal-body').html(htmlStr);
+        $('#list_modal .modal-footer').text(json.date);
+
+    }
+
+
+    // 工程清單
+    function createSelectHtml(data) {
+        var htmlStr = '';
+        htmlStr = '<select class="form-select form-select-lg" onchange="onChangeWorkerSel($(this))">\n';
+        htmlStr += '<option>請選工程</option>\n';
+        Object.entries(data).forEach(entry => {
+            const [key, value] = entry;
+            htmlStr += '<option value="' + key + '" data-workteam="' + value + '">' + key + '</option>\n';
+        });
+        htmlStr += '</select>\n';
+
+        return htmlStr;
+    }
+
+
+    // 選擇工程[onChange]
+    function onChangeWorkerSel(obj) {
+        var workteam = obj.find('option:selected').data('workteam');
+        var tdObj = obj.parent('td');
+        tdObj.find('input').val(workteam);
+
+    }
+
+
+    // 指派工程[抓資料]
+    function getAssignParams(obj) {
+        var trObj = obj.parent('td').parent('tr');
+        var td02 = trObj.find('td').eq(1);
+        var tb03 = trObj.find('td').eq(2);
+        var subsidAry = [];
+        tb03.find('tr').each(function(k, t) {
+            var subsid = tb03.find('tr').eq(k).find('td').eq(0).html();
+            if (subsidAry.includes(subsid) === false) {
+                subsidAry.push(subsid);
+            }
+        })
+        var companyno = td02.data('companyno');
+        var worksheet = td02.data('worksheet');
+        var custid = td02.data('custid');
+        var params = {
+            'compayno': companyno,
+            'worksheet': worksheet,
+            'custid': custid,
+            'subsid': subsidAry,
+
+        }
+
+        return params;
+    }
+
+
+    // 工單詳細清單
+    function crateOrderDetailHtml(data, orderAry) {
+        var htmlStr = '';
+
+        htmlStr += '\n' +
+            '<table id="workerdetail" class="table table-sm table-hover table-striped table-bordered mb-0">\n' +
+            '    <tbody>\n';
+
+        orderAry.forEach(function(t2, k2) {
+            htmlStr += '\n' +
+                '<tr>\n' +
+                '    <td>' + data.subsid[k2] + '</td>\n' +
+                '    <td>' + data.servicename[k2] + '</td>\n' +
+                '    <td>' + data.chargename[k2] + 'AA535</td>\n' +
+                '</tr>\n';
+        });
+
+        htmlStr += '\n' +
+            '    </tbody>\n' +
+            '</table>\n';
+
+        return htmlStr;
+    }
+
+
+    // 指派工程
+    function assignWork(obj) {
+        var params = getAssignParams(obj);
+        console.log(params);
+    }
+
+
+    // edit HTML，申告未處理
+    function editHtml_unFinish0310(companynoStr, json) {
+        $('#list_modal').find('h4').text(companynoStr + ' 未處理申告');
+        $('#list_modal .modal-body').text('查詢中...');
+        var data = json.data;
+        var htmlStr = '';
+
+        if (data.length < 1) {
+            htmlStr = '無資料';
+
+        } else {
+            htmlStr = '' +
+                '<table class="table table-sm table-hover table-striped table-bordered">\n' +
+                '    <thead>\n' +
+                '        <tr>\n' +
+                '            <th scope="col">#</th>\n' +
+                '            <th scope="col">公司別</th>\n' +
+                '            <th scope="col">工單號</th>\n' +
+                '            <th scope="col">住編</th>\n' +
+                '            <th scope="col">訂編</th>\n' +
+                '            <th scope="col">服務別</th>\n' +
+                '            <th scope="col">CallRequest</th>\n' +
+                '            <th scope="col">WorkCause</th>\n' +
+                '            <th scope="col">WorkCause2</th>\n' +
+                '            <th scope="col">備註</th>\n' +
+                '        </tr>\n' +
+                '    </thead>\n' +
+                '    <tbody>\n';
+
+            data.forEach(function(val, key) {
+                htmlStr += '' +
+                    '        <tr>\n' +
+                    '            <td>' + (key + 1) + '</td>\n' +
+                    '            <td>' + val.CompanyNo + '</td>\n' +
+                    '            <td>' + val.WorkSheet + '</td>\n' +
+                    '            <td>' + val.CustID + '</td>\n' +
+                    '            <td>' + val.SubsID + '</td>\n' +
+                    '            <td>' + val.ServiceName + '</td>\n' +
+                    '            <td>' + val.CallRequest + '</td>\n' +
+                    '            <td>' + val.WorkCause + '</td>\n' +
+                    '            <td>' + val.WorkCause2 + '</td>\n' +
+                    '            <td>' + val.MSComment + '</td>\n' +
+                    '        </tr>\n';
+            });
+
+            htmlStr += '' +
+                '    </tbody>\n' +
+                '</table>';
+        }
+
+        $('#list_modal .modal-body').html(htmlStr);
+        $('#list_modal .modal-footer').text(json.date);
+
+    }
+
+
+    // edit HTML，我會遲到
+    function editHtml_delay(companynoStr, json) {
+        $('#list_modal').find('h4').text(companynoStr + ' 我會遲到 清單');
+        $('#list_modal .modal-body').text('查詢中...');
+        var data = json.data;
+        var htmlStr = '';
+
+        if (data.length < 1) {
+            htmlStr = '無資料';
+
+        } else {
+            // CompanyNo,WorkSheet,CustID,BookDate,WorkerNum,WorkerName,delate,delatedesc
+            htmlStr = '' +
+                '<table class="table table-sm table-hover table-striped table-bordered">\n' +
+                '    <thead>\n' +
+                '        <tr>\n' +
+                '            <th scope="col">#</th>\n' +
+                '            <th scope="col">公司別</th>\n' +
+                '            <th scope="col">工單號</th>\n' +
+                '            <th scope="col">住編</th>\n' +
+                '            <th scope="col">用戶名</th>\n' +
+                '            <th scope="col">電話</th>\n' +
+                '            <th scope="col">安裝地址</th>\n' +
+                '            <th scope="col">預約日期</th>\n' +
+                '            <th scope="col">約定到府</th>\n' +
+                '            <th scope="col">工程</th>\n' +
+                '            <th scope="col">遲到時間</th>\n' +
+                '            <th scope="col">說明</th>\n' +
+                '        </tr>\n' +
+                '    </thead>\n' +
+                '    <tbody>\n';
+
+            data.forEach(function(val, key) {
+                htmlStr += '' +
+                    '        <tr>\n' +
+                    '            <td>' + (key + 1) + '</td>\n' +
+                    '            <td>' + val.CompanyNo + '</td>\n' +
+                    '            <td>' + val.WorkSheet + '</td>\n' +
+                    '            <td>' + val.CustID + '</td>\n' +
+                    '            <td>' + val.CustName + '</td>\n' +
+                    '            <td>' + val.TeleNum01 + '</td>\n' +
+                    '            <td>' + val.InstAddrName + '</td>\n' +
+                    '            <td>' + val.BookDate.substr(0, 10) + '</td>\n' +
+                    '            <td>' + val.expected.substr(0, 10) + '</td>\n' +
+                    '            <td>' + val.WorkerNum + val.WorkerName + '</td>\n' +
+                    '            <td>' + val.delate + '</td>\n' +
+                    '            <td>' + val.delatedesc + '</td>\n' +
+                    '        </tr>\n';
+            });
+
+            htmlStr += '' +
+                '    </tbody>\n' +
+                '</table>' +
+                '';
+        }
+
+        $('#list_modal .modal-body').html(htmlStr);
+        $('#list_modal .modal-footer').text(json.date);
+
+    }
+</script>

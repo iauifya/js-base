@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How are you?</h1>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'
+        integrity='sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=='
+        crossorigin='anonymous'></script>
+    <script>
+        $(function () {
+            $('body').prepend('<p style="color: red">Fine</p>')
+            $('h1').prepend('<p style="color: red">Fine</p>')
+
+
+            function hey(a, b = 1) {
+                return a * b;
+            }
+            hey(4, 5);
+
+            console.log(hey(4, 6)); //結果24
+
+            function foo(x, y, z) {
+                console.log(x, y, z);
+            }
+            let ary = [1, 2, 3];
+            foo(...ary); //結果為1 2 3
+
+            let parts = ['shoulders', 'knees'];
+            let lyrics = ['head', ...parts, 'and', 'toes'];
+            console.log(lyrics);
+
+            let ary1 = [1, 2, 3];
+            let ary2 = [4, 5, 6];
+            ary1 = [...ary1, ...ary2];
+            console.log(ary1);
+
+            function func1(...myArgs) {
+                console.log(myArgs);
+            }
+            func1();
+            func1(1);
+            func1(5, 6, 7);
+
+            var prefix = 'es6';
+            var obj = {
+                //計算屬性
+                [prefix + ' is']: 'cool', //is前面要空一格
+                //計算方法
+                [prefix + ' score'](){
+                    console.log(100);
+                }
+            };
+            console.log(obj['es6 is']);
+            obj['es6 score']();
+
+            // 解構賦值
+            let gee =['hi','two','three'];
+            //從array中提取值，然後按照對應的位置，指定給相應的變數
+            let [hi,end,king] = gee;
+            console.log(hi); //把'hi'從陣列中取出來
+            console.log(end);
+            console.log(king);
+
+            function kuu(){
+                return [1,2,3];
+            }
+            let arr3 = kuu();
+            console.log(arr3); // 結果是[1,2,3]
+            let[a,b,c] = kuu(); //把陣列轉換成變數值
+            console.log(a,b,c);
+
+            //搭配 Rest Operator 其餘運算子
+            let[g,i,...h] = [1,2,3,4,5];
+            console.log(g); //1
+            console.log(...h); //3 4 5
+        })
+    </script>
+</body>
+
+</html>
